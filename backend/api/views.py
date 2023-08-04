@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from rest_framework import generics
-from .models import Contact, Author, Blog
-from .serializers import ContactSerializer, AuthorSerializer, BlogSerializer
+from .models import Contact, Blog
+from .serializers import ContactSerializer, BlogSerializer
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view
 from rest_framework import status
@@ -25,12 +25,6 @@ from rest_framework import status
 def get_contacts(request):
     contacts = Contact.objects.all()
     serializer = ContactSerializer(contacts, many=True)
-    return Response(serializer.data) 
-
-@api_view(['GET'])
-def get_authors(request):
-    authors = Author.objects.all()
-    serializer = AuthorSerializer(authors, many=True)
     return Response(serializer.data) 
 
 @api_view(['GET'])
